@@ -33,8 +33,8 @@ public class TodoAppDAO {
     public List<Todo> getAllTodos() throws SQLException {
         List<Todo> todos = new ArrayList<>();
         try(Connection cnn = new DatabaseConnection().getDBConnection();
-            PreparedStatement stmt = cnn.prepareStatement(  "SELECT * FROM todos ORCER BY created_at DESC");
-            ResultSet res = stmt.getResultSet();
+            PreparedStatement stmt = cnn.prepareStatement(  "SELECT * FROM todos ORDER BY created_at DESC");
+            ResultSet res = stmt.executeQuery();
         ){
             while(res.next()){
                 todos.add(getTodo(res));   

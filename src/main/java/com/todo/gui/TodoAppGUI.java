@@ -136,14 +136,29 @@ public class TodoAppGUI extends JFrame{
 
     }
     private void refreshTodo() {
-
+        loadTodos();
     }
     private void filterTodos() {
 
     }
     private void loadTodos() {
-        
-        List<Todo> todos = todoDAO.getAllTodos();
+        try{
+            List<Todo> todos = todoDAO.getAllTodos();
+            updateTable(todos);
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(this, "Error Loading todos : "+e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void updateTable(List<Todo> todos)
+    {
         tableModel.setRowCount(0);
+        for(Todo todo : todos)
+        {
+            Object[] row = {todo.getId(), todo.getTitle(), todo.getDescription(), todo.isCompleted(), todo.getCreated_at(), todo.getUpdated_at()};
+            tableModel.addRow(row);
+        }
     }
 }

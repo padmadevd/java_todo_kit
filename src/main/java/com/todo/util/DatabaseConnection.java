@@ -3,7 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 public class DatabaseConnection {
-    public static final String URL = "jdbc:mysql://localhost:3306/todo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    public static final String URL = "jdbc:mysql://localhost:3306/todo";
 
     public static final String USERNAME="root";
     public static final String PASSWORD="padmadevd";
