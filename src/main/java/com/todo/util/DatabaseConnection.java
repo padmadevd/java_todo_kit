@@ -6,7 +6,7 @@ public class DatabaseConnection {
     public static final String URL = "jdbc:mysql://localhost:3306/todo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
     public static final String USERNAME="root";
-    public static final String PASSWORD="logeshaastha01";
+    public static final String PASSWORD="padmadevd";
     static{
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
