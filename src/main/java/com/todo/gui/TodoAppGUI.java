@@ -194,11 +194,34 @@ public class TodoAppGUI extends JFrame {
     }
     private void deleteTodo(){
 
+        int row = todoTable.getSelectedRow();
+        if(row == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int id = (int)todoTable.getValueAt(row,0);
+        try
+        {
+            if(todoDAO.deleteTodoById(id)){
+                JOptionPane.showMessageDialog(this,"Todo deleted Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+                loadTodos();
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Failed to delete todo","Delete Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(this,"Delete Error :"+e.getMessage(),"Delete Error",JOptionPane.ERROR_MESSAGE);
+        }
     }
     private void refreshTodo(){
 
+        titleField.setText("");
+        
     }
-
 
     private void loadTodos(){
         try{
